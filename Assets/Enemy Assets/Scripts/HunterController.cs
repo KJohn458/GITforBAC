@@ -122,11 +122,10 @@ public class HunterController : MonoBehaviour
     {
         if (c.gameObject.tag == "PlayerDamage")
         {
+            GameObject poof = Spawner.instance.Spawn("Poof");
+            poof.transform.position = gameObject.transform.position;
             gameObject.SetActive(false);
 
-            GameObject poof = Spawner.instance.Spawn("Poof");
-            
-            //poof.Play();
         }
     }
 

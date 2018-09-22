@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TurnAround
   - Fairy
+  - PlayerDamage
   layers:
   - Default
   - TransparentFX
