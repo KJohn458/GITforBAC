@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ec9303c353ba40bd67474172b6ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 6
   health: 0
 --- !u!114 &114790318223992912
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   rangedSpeed: 20
   IsGrounded: 0
   airTime: 0
-  health: {fileID: 0}
+  health: {fileID: 114427148836942038}
 --- !u!212 &212516376093136046
 SpriteRenderer:
   m_ObjectHideFlags: 1
