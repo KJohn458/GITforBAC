@@ -12,44 +12,80 @@ public class Player : MonoBehaviour
     public Transform rangedSpawn;
     public int rangedSpeed;
 
-    public bool isGrounded;
-    private float airTime;
+    public bool IsGrounded;
+    [SerializeField] private float airTime = 0f; 
+    private float minAirTime = .5f;
+    private float maxAirTime = 2f;
 
     private Rigidbody2D rb2d;
+    private Animator a2d;
+    private SpriteRenderer sprite; 
 
+    private bool IsWalking = false;
 
 
     // Use this for initialization
     void Start()
     {
-        isGrounded = true;
+        IsGrounded = true;
         rb2d = GetComponent<Rigidbody2D>();
+        a2d = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         if (Input.GetKey("a"))
         {
+            a2d.SetBool("IsWalking", true);
             finalPos.x = transform.position.x - speed;
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
+            sprite.flipX = true;
         }
 
         if (Input.GetKey("d"))
         {
+            if(sprite.flipX == true)
+            {
+                sprite.flipX = false;
+            }
+            a2d.SetBool("IsWalking", true);
             finalPos.x = transform.position.x + speed;
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
         }
+        if(Input.GetKey("a") == false && Input.GetKey("d") == false)
+        {
+            a2d.SetBool("IsWalking", false);
+        }
 
         
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        if(Input.GetKey(KeyCode.Space))
+        { 
+            airTime += .05f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space) && IsGrounded == true) 
         {
-            Debug.Log("in looperboy");
-            airTime = 1.1f;
-            rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
-            airTime -= .1f;
-            isGrounded = false;
+            if(airTime < minAirTime)
+            {
+                rb2d.AddForce(new Vector2(0, jumpHeight * minAirTime), ForceMode2D.Impulse);
+            }
+
+            else if(airTime > maxAirTime)
+            {
+                rb2d.AddForce(new Vector2(0, jumpHeight * maxAirTime), ForceMode2D.Impulse);
+            }
+
+            else
+            {
+                rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
+            }
+            
+            a2d.SetBool("IsGrounded", false);
+            IsGrounded = false;
+            airTime = 0f;
         }
 
 
@@ -67,7 +103,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "floor") ;
         {
-            isGrounded = true;
+            IsGrounded = true;
+            a2d.SetBool("IsGrounded", true);
         }
     }
     
