@@ -37,7 +37,7 @@ public class ShooterController : MonoBehaviour {
     void Start ()
     {        
             rb = GetComponent<Rigidbody2D>();
-       // player = ColorChangeController.instance.transform;
+       // player = Player.transform;
             anim = GetComponent<Animator>();
                 
             timer = timeActual;        

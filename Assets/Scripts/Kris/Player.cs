@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     public Transform player;
     public int speed;
     public float jumpHeight;
@@ -24,6 +26,11 @@ public class Player : MonoBehaviour
     private SpriteRenderer sprite; 
 
     private bool IsWalking = false;
+
+    private void Awake()
+    {
+        if (instance == null) { instance = this; }
+    }
 
 
     // Use this for initialization
