@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public Transform rangedSpawn;
     public int rangedSpeed;
 
-    public Rigidbody2D rb2d;
+    private Rigidbody2D rb2d;
 
 
 
