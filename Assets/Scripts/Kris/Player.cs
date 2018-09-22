@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
         StartCoroutine(Wait());
         Destroy(LightningBolt, 2.0f);
-        
+        AudioManager.instance.PlaySFX("attack");
     }
 
     void FireLeft()
@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
         StartCoroutine(Wait());
         Destroy(LightningBolt, 2.0f);
-
+        AudioManager.instance.PlaySFX("attack");
     }
 
     IEnumerator Wait()
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
         else if (previousHealth > health)
         {
             a2d.SetTrigger("Hurt");
-
+            AudioManager.instance.PlaySFX("PlayerHit");
             rb2d.velocity = Vector3.zero;
         }
     }

@@ -97,8 +97,9 @@ public class HunterController : MonoBehaviour
 
         if (dist < chaseDist && !charging)
         {
+            AudioManager.instance.PlaySFX("woosh");
             state = State.Charging;
-          //  charging = true;
+            charging = true;
         }
     }
 
