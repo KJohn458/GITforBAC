@@ -7,7 +7,7 @@ public class PatrollerController : MonoBehaviour {
     Rigidbody2D rb;
     public bool otherWay;
     public bool fryingPan;
-    public HealthController health;
+   // public HealthController health;
     SpriteRenderer sr;
     public Animator anim;
     bool dead;
@@ -16,20 +16,11 @@ public class PatrollerController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();        
-        health = GetComponent<HealthController>();
+       // health = GetComponent<HealthController>();
         anim = GetComponent<Animator>();
     }
 
-    void OnEnable()
-    {
-        if (health == null) Debug.Log("Health is null");
-        health.onHealthChanged += HealthChanged;
-    }
-
-    void OnDisable()
-    {
-        health.onHealthChanged -= HealthChanged;
-    }
+   
 
 
     // Update is called once per frame
@@ -44,6 +35,11 @@ public class PatrollerController : MonoBehaviour {
     {
         if (c.gameObject.tag == "TurnAround" && !otherWay&&!fryingPan) { transform.Rotate(new Vector3(0, 180, 0));/* otherWay = true; */  fryingPan = true; /* sr.flipX = false;*/ }
         if (c.gameObject.tag == "TurnAround" && otherWay&&!fryingPan) { transform.Rotate(new Vector3(0, 0, 0)); /* otherWay = false; */ fryingPan = true;/* sr.flipX = true;*/ }
+
+        if (c.gameObject.tag == "PlayerDamage")
+        {
+            gameObject.SetActive(false);
+        }
     }
         
     private void OnTriggerExit2D(Collider2D c)
@@ -63,26 +59,6 @@ public class PatrollerController : MonoBehaviour {
         fryingPan = false;
     }
 
-    void HealthChanged(float previousHealth, float health)
-    {
-        if (previousHealth > 0 && health == 0)
-        {
-             anim.SetTrigger("Death");
-
-            //gameObject.SetActive(false);
-            dead = true;
-            gameObject.layer = 16;
-          //  AudioManager.instance.PlaySFX ("pig");
-
-        }
-        else if (previousHealth > health)
-        {
-
-             anim.SetTrigger("Hurt");
-            GameObject pow = Spawner.instance.Spawn("HurtSplode");
-            pow.transform.position = gameObject.transform.position;
-           // AudioManager.instance.PlaySFX ("pig");
-        }
-    }
+   
 
 }

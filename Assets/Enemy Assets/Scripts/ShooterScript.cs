@@ -6,7 +6,7 @@ public class ShooterScript : MonoBehaviour {
 
 
     Rigidbody2D rb;
-    public HealthController health;
+    
     public Transform player;
     public Transform gun;
     public Animator anim;
@@ -39,21 +39,12 @@ public class ShooterScript : MonoBehaviour {
             rb = GetComponent<Rigidbody2D>();
        // player = ColorChangeController.instance.transform;
             anim = GetComponent<Animator>();
-            health = GetComponent<HealthController>();            
+                
             timer = timeActual;        
     }
 
 
-    void OnEnable()
-    {
-        if (health == null) Debug.Log("Health is null");
-        health.onHealthChanged += HealthChanged;
-    }
-
-    void OnDisable()
-    {
-        health.onHealthChanged -= HealthChanged;
-    }
+   
     void Update()
     {
         switch (state)
@@ -147,27 +138,11 @@ public class ShooterScript : MonoBehaviour {
         
     }
 
-    void HealthChanged(float previousHealth, float health)
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        if (previousHealth > 0 && health == 0)
+        if (c.gameObject.tag == "PlayerDamage")
         {
-           // anim.SetTrigger("Death");
-            state = State.Dead;
-            // gameObject.SetActive(false);
-            chaseDist = 0;
-            attackDist = 0;
-            dead = true;
-            gameObject.layer = 16;
-
-        }
-        else if (previousHealth > health)
-        {
-
-            // anim.SetTrigger("ow");
-
-            GameObject pow = Spawner.instance.Spawn("HurtSplode");
-            pow.transform.position = gameObject.transform.position;
-
+            gameObject.SetActive(false);
         }
     }
 
