@@ -14,7 +14,7 @@ public class TurretController : MonoBehaviour {
     private float timer;
     private float timeActual = 1;
     public float attackDist = 5;
-    public float chaseDist = 9;
+    public float chaseDist = 7;
     public float dist2;
 
     bool resting=false;

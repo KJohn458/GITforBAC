@@ -33,8 +33,8 @@ public class SwiperController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (!otherWay && !dead) { rb.velocity = transform.right; }
-        else if (!dead) { rb.velocity = -transform.right; }
+        if (!otherWay && !dead) { rb.velocity = -transform.right; }
+        else if (!dead) { rb.velocity = transform.right; }
         else { rb.velocity = Vector2.zero; }
 
         float dist = Vector3.Distance(transform.position, player.position);
