@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 4907728496376298}
   - component: {fileID: 212516376093136046}
   - component: {fileID: 50527191588699936}
+  - component: {fileID: 114427148836942038}
   - component: {fileID: 114790318223992912}
   - component: {fileID: 61800062625500008}
   - component: {fileID: 95853166246412808}
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7799044, y: -0.5779612, z: 0}
+  m_LocalPosition: {x: -7.724554, y: 1.3253516, z: 0}
   m_LocalScale: {x: 0.486, y: 0.513, z: 1}
   m_Children:
   - {fileID: 4596515272394324}
@@ -136,6 +137,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114427148836942038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937769584380356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799ec9303c353ba40bd67474172b6ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  health: 0
 --- !u!114 &114790318223992912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +170,7 @@ MonoBehaviour:
   rangedSpeed: 20
   IsGrounded: 0
   airTime: 0
+  health: {fileID: 114427148836942038}
 --- !u!212 &212516376093136046
 SpriteRenderer:
   m_ObjectHideFlags: 1

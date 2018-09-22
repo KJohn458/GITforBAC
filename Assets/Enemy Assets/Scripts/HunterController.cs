@@ -40,7 +40,7 @@ public class HunterController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-      //  player = ColorChangeController.instance.transform;
+        player = Player.instance.transform;
         anim = GetComponent<Animator>();
        // health = GetComponent<HealthController>();
         timer = timeActual;

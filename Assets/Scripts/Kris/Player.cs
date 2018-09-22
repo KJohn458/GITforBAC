@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     public Transform player;
     public int speed;
     public float jumpHeight;
@@ -25,6 +27,13 @@ public class Player : MonoBehaviour
 
     private bool IsWalking = false;
 
+    public HealthController health;
+
+    private void Awake()
+    {
+        if (instance == null) { instance = this; }
+    }
+
 
     // Use this for initialization
     void Start()
@@ -33,6 +42,17 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         a2d = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+    }
+
+    void OnEnable()
+    {
+        if (health == null) Debug.Log("Health is null");
+        health.onHealthChanged += HealthChanged;
+    }
+
+    void OnDisable()
+    {
+        health.onHealthChanged -= HealthChanged;
     }
 
     // Update is called once per frame
@@ -144,6 +164,23 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1);
         a2d.SetBool("IsAttacking", false);
         rangedWait = false;
+    }
+
+    void HealthChanged(float previousHealth, float health)
+    {
+        if (previousHealth > 0 && health == 0)
+        {
+            a2d.SetTrigger("Death");
+            
+           
+            rb2d.velocity = Vector3.zero;
+        }
+        else if (previousHealth > health)
+        {
+            a2d.SetTrigger("Hurt");
+
+            rb2d.velocity = Vector3.zero;
+        }
     }
 }
 
