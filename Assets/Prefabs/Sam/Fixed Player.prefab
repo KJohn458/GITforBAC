@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1937769584380356}
   m_IsPrefabAsset: 1
+--- !u!1 &1360990337637798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4596515272394324}
+  m_Layer: 0
+  m_Name: Lightning Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1937769584380356
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +46,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4596515272394324
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360990337637798}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.2508323, y: 0.85372555, z: 0.16796875}
+  m_LocalScale: {x: 2.0576131, y: 1.9493177, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4907728496376298}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4907728496376298
 Transform:
   m_ObjectHideFlags: 1
@@ -38,9 +66,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 2.1, z: 0}
+  m_LocalPosition: {x: -7.7799044, y: -0.5779612, z: 0}
   m_LocalScale: {x: 0.486, y: 0.513, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4596515272394324}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,11 +150,12 @@ MonoBehaviour:
   player: {fileID: 4907728496376298}
   speed: 5
   jumpHeight: 10
-  rangedPrefab: {fileID: 1481717658021226, guid: 569d4e5c17af85d4ebf7ca023dbe64c4,
+  rangedPrefab: {fileID: 1821603598457724, guid: 70ae86f57a944f4479e1a12f196e99b3,
     type: 2}
   rangedSpawn: {fileID: 4907728496376298}
   rangedSpeed: 20
   IsGrounded: 0
+  airTime: 0
 --- !u!212 &212516376093136046
 SpriteRenderer:
   m_ObjectHideFlags: 1
