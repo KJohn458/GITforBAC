@@ -31,6 +31,6 @@ public class MainMenuController : MonoBehaviour
     public void CreditsGameObject()
     {
         SceneManager.LoadScene("Credits", LoadSceneMode.Single);
-    }
+    }   
 
 }

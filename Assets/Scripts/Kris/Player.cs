@@ -6,12 +6,17 @@ public class Player : MonoBehaviour
 {
     public Transform player;
     public int speed;
-    public int jumpHeight;
+    public float jumpHeight;
     private Vector2 finalPos;
-    private bool hasJumped;
     public GameObject rangedPrefab;
     public Transform rangedSpawn;
     public int rangedSpeed;
+
+    public bool isGrounded;
+    public float startJumpTime;
+    public float maxJumpTime;
+    public float jumpAcceleration;
+    public float airJumpTime;
 
     private Rigidbody2D rb2d;
 
@@ -20,7 +25,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        hasJumped = false;
+        isGrounded = true;
         rb2d = GetComponent<Rigidbody2D>();
     }
 
@@ -39,12 +44,25 @@ public class Player : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
         }
 
-
-        if (Input.GetKeyDown("space") && hasJumped != true)
+        if (Input.GetKeyDown("space") && isGrounded == true && (startJumpTime + maxJumpTime > Time.time))
         {
-            rb2d.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
-            hasJumped = true;
+            isGrounded = false;
+            rb2d.AddForce(Vector2.up * jumpAcceleration, ForceMode2D.Impulse);
+
         }
+
+        else if (Input.GetKeyDown("space") && isGrounded == true)
+        {
+            Debug.Log("entered statement");
+            isGrounded = false;
+            startJumpTime = Time.time;
+            maxJumpTime = startJumpTime + airJumpTime;
+            rb2d.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
+            
+        }
+        
+
+        
 
 
 
@@ -60,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        hasJumped = false;
+        isGrounded = true;
     }
     
     void Fire()
