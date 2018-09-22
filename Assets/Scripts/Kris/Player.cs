@@ -65,8 +65,9 @@ public class Player : MonoBehaviour
     
     void Fire()
     {
-        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn);
-        LightningBolt.GetComponent<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
+        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn.position, rangedSpawn.rotation);
+        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
+        LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
 
         Destroy(LightningBolt, 2.0f);
     }

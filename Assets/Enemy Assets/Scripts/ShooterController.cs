@@ -100,7 +100,7 @@ public class ShooterController : MonoBehaviour {
             state = State.Idle;
            // anim.SetTrigger("Ready");
             anim.SetTrigger("Attack");
-            Debug.Log("Ready");
+           // Debug.Log("Ready");
         }
     }
 
