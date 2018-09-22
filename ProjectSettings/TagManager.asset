@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TurnAround
   - Fairy
+  - floor
   layers:
   - Default
   - TransparentFX

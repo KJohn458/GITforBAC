@@ -13,10 +13,7 @@ public class Player : MonoBehaviour
     public int rangedSpeed;
 
     public bool isGrounded;
-    public float startJumpTime;
-    public float maxJumpTime;
-    public float jumpAcceleration;
-    public float airJumpTime;
+    private float airTime;
 
     private Rigidbody2D rb2d;
 
@@ -32,6 +29,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if (Input.GetKey("a"))
         {
             finalPos.x = transform.position.x - speed;
@@ -44,26 +42,15 @@ public class Player : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
         }
 
-        if (Input.GetKeyDown("space") && isGrounded == true && (startJumpTime + maxJumpTime > Time.time))
-        {
-            isGrounded = false;
-            rb2d.AddForce(Vector2.up * jumpAcceleration, ForceMode2D.Impulse);
-
-        }
-
-        else if (Input.GetKeyDown("space") && isGrounded == true)
-        {
-            Debug.Log("entered statement");
-            isGrounded = false;
-            startJumpTime = Time.time;
-            maxJumpTime = startJumpTime + airJumpTime;
-            rb2d.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
-            
-        }
         
-
-        
-
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
+        {
+            Debug.Log("in looperboy");
+            airTime = 1.1f;
+            rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
+            airTime -= .1f;
+            isGrounded = false;
+        }
 
 
 
@@ -78,7 +65,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.tag == "floor") ;
+        {
+            isGrounded = true;
+        }
     }
     
     void Fire()
