@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     public int speed;
     public float jumpHeight;
     private Vector2 finalPos;
+
     public GameObject rangedPrefab;
     public Transform rangedSpawn;
     public int rangedSpeed;
+    private bool rangedWait;
 
     public bool IsGrounded;
     [SerializeField] private float airTime = 0f; 
@@ -93,9 +95,18 @@ public class Player : MonoBehaviour
 
 
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0) && rangedWait == false)
         {
-            Fire();
+            a2d.SetBool("IsAttacking", true);
+            rangedWait = true;
+            if(sprite.flipX == true)
+            {
+                FireLeft();
+            }
+            else
+            {
+                FireRight();
+            }
         }
     }
 
@@ -108,13 +119,31 @@ public class Player : MonoBehaviour
         }
     }
     
-    void Fire()
+    void FireRight()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn.position, rangedSpawn.rotation);
         //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
-
+        StartCoroutine(Wait());
         Destroy(LightningBolt, 2.0f);
+        
+    }
+
+    void FireLeft()
+    {
+        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn.position, rangedSpawn.rotation);
+        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
+        LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
+        StartCoroutine(Wait());
+        Destroy(LightningBolt, 2.0f);
+
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        a2d.SetBool("IsAttacking", false);
+        rangedWait = false;
     }
 }
 
