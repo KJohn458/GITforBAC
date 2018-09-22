@@ -70,7 +70,7 @@ public class ShooterController : MonoBehaviour {
 
         }
 
-        if (Input.GetButtonDown("Jump")) { GameObject poof = Spawner.instance.Spawn("Poof"); }
+        //if (Input.GetButtonDown("Jump")) { GameObject poof = Spawner.instance.Spawn("Poof"); }
 
         if (resting == true)
         {
@@ -142,7 +142,10 @@ public class ShooterController : MonoBehaviour {
     {
         if (c.gameObject.tag == "PlayerDamage")
         {
+            GameObject poof = Spawner.instance.Spawn("Poof");
+            poof.transform.position = gameObject.transform.position;
             gameObject.SetActive(false);
+
         }
     }
 
