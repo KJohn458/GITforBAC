@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterScript : MonoBehaviour {
+public class TurretController : MonoBehaviour {
 
 
     Rigidbody2D rb;
@@ -12,14 +12,13 @@ public class ShooterScript : MonoBehaviour {
     public Animator anim;
 
     private float timer;
-    private float timeActual = 5;
+    private float timeActual = 1;
     public float attackDist = 5;
     public float chaseDist = 9;
     public float dist2;
 
     bool resting=false;
-    bool lefty = false;
-    bool righty = true;
+   
     bool dead = true;
     
 
@@ -89,37 +88,30 @@ public class ShooterScript : MonoBehaviour {
 
     void IdleUpdate()
     {
-       // if (transform.position.x < player.transform.position.x && lefty==false ) { transform.Rotate(new Vector3(0, 180, 0)); lefty = true; righty = false; }
-       // else if (transform.position.x > player.transform.position.x && righty==false ) { transform.Rotate(new Vector3(0, 0, 0)); lefty = false; righty = true; }
-        //else { transform.Rotate(new Vector3(0, 0, 0)); lefty = false; }
+        
+
+        Vector3 diff = player.position - transform.position;
+        diff.Normalize();
+
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 0);
+
 
         float dist = Vector3.Distance(transform.position, player.position);
         dist2 = dist;
         if (dist < chaseDist && !resting)
         {
             state = State.Idle;
-           // anim.SetTrigger("Ready");
-            anim.SetTrigger("Attack");
-            Debug.Log("Ready");
+            // anim.SetTrigger("Ready");
+            // anim.SetTrigger("Attack");
+            //Debug.Log("Ready");
+            ShootMissile();
         }
     }
 
     void ReadyUpdate()
     {
-      //  float dist = Vector3.Distance(transform.position, player.position);
-      //  dist2 = dist;
-      //  if (dist < attackDist && !resting)
-      //  {
-      //      // ShootMissile();
-      //       anim.SetTrigger("Attack");
-      //      Debug.Log("tack");
-      //  }
-      //  else if (dist > chaseDist )
-      //  {
-      //      state = State.Idle;
-      //      anim.SetTrigger("Idle");
-      //      Debug.Log("Retreat");
-      //  }
+      
     }
 
     void RecoveringUpdate()
@@ -131,11 +123,16 @@ public class ShooterScript : MonoBehaviour {
     public void ShootMissile()
     {
         resting = true;
-        GameObject bullet = Spawner.instance.Spawn("Bullet");
+        GameObject bullet = Spawner.instance.Spawn("Bullet 1");
         bullet.transform.position = gun.transform.position;
        // AudioManager.instance.PlaySFX("GunPew");        
-        bullet.GetComponent<BulletController>().Sombrero(gun.right);
+        bullet.GetComponent<OtherBulletController>().Sombrero(gun.right);
         
+    }
+
+    IEnumerator Shootalot()
+    {
+        yield break;
     }
 
     private void OnTriggerEnter2D(Collider2D c)
