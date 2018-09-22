@@ -25,6 +25,7 @@ public class SwiperController : MonoBehaviour {
         sr = GetComponentInChildren<SpriteRenderer>();        
        // health = GetComponent<HealthController>();
         anim = GetComponent<Animator>();
+        player = Player.instance.transform;
     }
 
    

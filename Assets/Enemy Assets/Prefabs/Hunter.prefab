@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 58488037424782922}
   - component: {fileID: 95981647837636964}
   - component: {fileID: 114431768946720756}
+  - component: {fileID: 114790564956611716}
   m_Layer: 12
   m_Name: Hunter
   m_TagString: Fairy
@@ -249,6 +250,18 @@ MonoBehaviour:
   otherWay: 0
   fryingPan: 0
   state: 0
+--- !u!114 &114790564956611716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856141241448594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2375081ce076c4f976093527f05c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!198 &198763061210327778
 ParticleSystem:
   m_ObjectHideFlags: 1
