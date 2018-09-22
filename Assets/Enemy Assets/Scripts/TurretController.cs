@@ -69,7 +69,7 @@ public class TurretController : MonoBehaviour {
 
         }
 
-        if (Input.GetButtonDown("Jump")) { ShootMissile(); }
+       // if (Input.GetButtonDown("Jump")) { ShootMissile(); }
 
         if (resting == true)
         {

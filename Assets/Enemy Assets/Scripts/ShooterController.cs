@@ -70,7 +70,7 @@ public class ShooterController : MonoBehaviour {
 
         }
 
-        if (Input.GetButtonDown("Jump")) { ShootMissile(); }
+        if (Input.GetButtonDown("Jump")) { GameObject poof = Spawner.instance.Spawn("Poof"); }
 
         if (resting == true)
         {
