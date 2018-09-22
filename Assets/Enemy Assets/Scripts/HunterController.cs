@@ -115,7 +115,15 @@ public class HunterController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D c)
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+
+        if (c.gameObject.tag != "TurnAround")
+        {
+            GameObject poof = Spawner.instance.Spawn("Poof");
+            poof.transform.position = gameObject.transform.position;
+            gameObject.SetActive(false);
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D c)
