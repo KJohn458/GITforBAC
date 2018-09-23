@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator a2d;
     private SpriteRenderer sprite;
-
     private float timer = 0;
 
     private bool IsWalking = false;
@@ -61,18 +60,22 @@ public class Player : MonoBehaviour
         health.onHealthChanged -= HealthChanged;
     }
 
-/*
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (((timer % 60) > 1) && rangedWait == true)
+        if(timer <= 60 && rangedWait == true)
         {
+           // Debug.Log(timer);
+            timer += Time.deltaTime;
+        }
+        if (((timer % 60) > 1))
+        {
+            Debug.Log(timer);
             timer = 0.0f;
             a2d.SetBool("IsAttacking", false);
             rangedWait = false;
         }
     }
-    */
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -164,19 +167,21 @@ public class Player : MonoBehaviour
     void FireRight()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, rightRangedSpawn.position, rightRangedSpawn.rotation);
+        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
-        StartCoroutine("WaitForShoot");
+       // StartCoroutine("WaitForShoot");
     }
 
     void FireLeft()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, leftRangedSpawn.position, leftRangedSpawn.rotation);
+        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
-        StartCoroutine("WaitForShoot");
+        //StartCoroutine("WaitForShoot");
     }
 
     void Jump()
@@ -225,7 +230,7 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(scene.name);
         yield break;
     }
-
+    /*
     IEnumerator WaitForShoot()
     {
         yield return new WaitForSeconds(.3f);
@@ -234,5 +239,6 @@ public class Player : MonoBehaviour
         rangedWait = false;
         yield break;
     }
+    */
 }
 
