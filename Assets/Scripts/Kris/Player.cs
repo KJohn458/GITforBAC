@@ -10,13 +10,14 @@ public class Player : MonoBehaviour
     public Transform player;
     public int speed;
     public float jumpHeight;
-    private Vector2 finalPos;
+    [SerializeField] private Vector2 finalPos;
 
     public GameObject rangedPrefab;
     public Transform leftRangedSpawn;
     public Transform rightRangedSpawn;
     public int rangedSpeed;
     private bool rangedWait;
+    public Transform GroundCheckOrigin;
 
     public bool IsGrounded;
     [SerializeField] private float airTime = 0f;
@@ -60,9 +61,21 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        timer += Time.deltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .01f);
+        if (hit.collider != null)
+        {
+            if(hit.collider.tag == "floor")
+            {
+                Debug.Log("Hit!");
+                IsGrounded = true;
+                a2d.SetBool("IsGrounded", true);
+            }
+            
+        }
+
+            timer += Time.deltaTime;
         if (((timer % 60) > 1) && rangedWait == true)
         {
             timer = 0.0f;
@@ -74,8 +87,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey("a"))
         {
             a2d.SetBool("IsWalking", true);
+            finalPos.y = transform.position.y;
             finalPos.x = transform.position.x - speed;
-            transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
+            Vector3 hi = Vector3.Lerp(transform.position, finalPos, Time.deltaTime);
+            transform.position = hi;
             sprite.flipX = true;
         }
 
@@ -86,6 +101,7 @@ public class Player : MonoBehaviour
                 sprite.flipX = false;
             }
             a2d.SetBool("IsWalking", true);
+            finalPos.y = transform.position.y;
             finalPos.x = transform.position.x + speed;
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
         }
@@ -135,15 +151,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "floor")
-        {
-            IsGrounded = true;
-            a2d.SetBool("IsGrounded", true);
-        }
-    }
-
+    
+    
     void FireRight()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, rightRangedSpawn.position, rightRangedSpawn.rotation);
