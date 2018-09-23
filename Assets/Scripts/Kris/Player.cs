@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         {
             if (speedForce <= maxAirTime)
             {
-                speedForce += .1f;
+                speedForce += .2f;
             }
 
             else
