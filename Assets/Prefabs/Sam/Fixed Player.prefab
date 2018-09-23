@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294302849117926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4596515272394324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4531603601429742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheckOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 114790318223992912}
   - component: {fileID: 95853166246412808}
   - component: {fileID: 61275177549206392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fixed Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3526545, y: 0.49792498, z: 0}
+  m_LocalPosition: {x: -6.9, y: -3.23, z: 0}
   m_LocalScale: {x: 0.17018262, y: 0.17963721, z: 0.35017}
   m_Children:
   - {fileID: 4294302849117926}
@@ -221,8 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4907728496376298}
   speed: 5
-  jumpHeight: 5
-  finalPos: {x: 0, y: 0}
+  maxJumpHeight: 0
+  minJumpHeight: 0
   rangedPrefab: {fileID: 1821603598457724, guid: 70ae86f57a944f4479e1a12f196e99b3,
     type: 2}
   leftRangedSpawn: {fileID: 4596515272394324}
@@ -230,7 +230,6 @@ MonoBehaviour:
   rangedSpeed: 20
   GroundCheckOrigin: {fileID: 4531603601429742}
   IsGrounded: 0
-  airTime: 0
   health: {fileID: 114427148836942038}
 --- !u!212 &212516376093136046
 SpriteRenderer:
