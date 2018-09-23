@@ -22,8 +22,10 @@ GameObject:
   - component: {fileID: 212438955524135114}
   - component: {fileID: 95171443940426102}
   - component: {fileID: 61793235287414158}
+  - component: {fileID: 114870136207357612}
   - component: {fileID: 50995872952170608}
-  m_Layer: 0
+  - component: {fileID: 114174743414355218}
+  m_Layer: 12
   m_Name: Dark Age
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +42,7 @@ GameObject:
   - component: {fileID: 4643438402297466}
   - component: {fileID: 198857833964059116}
   - component: {fileID: 199772505407001582}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Red System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,8 +59,23 @@ GameObject:
   - component: {fileID: 4326969320368976}
   - component: {fileID: 198161294322901158}
   - component: {fileID: 199708794935822364}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Black System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1932494317916916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4933919671586302}
+  m_Layer: 12
+  m_Name: Zapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,11 +101,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327927149696338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.45, y: 0.2, z: 0}
+  m_LocalPosition: {x: 6.33, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4643438402297466}
   - {fileID: 4326969320368976}
+  - {fileID: 4933919671586302}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -105,6 +123,19 @@ Transform:
   m_Father: {fileID: 4590701225742464}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 50.2}
+--- !u!4 &4933919671586302
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932494317916916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.58, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4590701225742464}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50995872952170608
 Rigidbody2D:
   serializedVersion: 4
@@ -124,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61793235287414158
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -168,6 +199,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114174743414355218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1327927149696338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531cb9079ce374e49ae169aca94ef237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  gun: {fileID: 4933919671586302}
+  anim: {fileID: 95171443940426102}
+  attackDist: 5
+  chaseDist: 12
+  dist2: 0
+  state: 0
+--- !u!114 &114870136207357612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1327927149696338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799ec9303c353ba40bd67474172b6ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  health: 0
 --- !u!198 &198161294322901158
 ParticleSystem:
   m_ObjectHideFlags: 1
