@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .01f);
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .05f);
         if (hit.collider != null)
         {
             if(hit.collider.tag == "floor")
