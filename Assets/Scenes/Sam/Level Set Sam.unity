@@ -1612,6 +1612,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114790318223992912, guid: 5e8d542417d2ee0439d7ae6fb733ddae,
+        type: 2}
+      propertyPath: jumpHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114790318223992912, guid: 5e8d542417d2ee0439d7ae6fb733ddae,
+        type: 2}
+      propertyPath: minJumpHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114790318223992912, guid: 5e8d542417d2ee0439d7ae6fb733ddae,
+        type: 2}
+      propertyPath: maxJumpHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114427148836942038, guid: 5e8d542417d2ee0439d7ae6fb733ddae,
+        type: 2}
+      propertyPath: health
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8d542417d2ee0439d7ae6fb733ddae, type: 2}
   m_IsPrefabAsset: 0
