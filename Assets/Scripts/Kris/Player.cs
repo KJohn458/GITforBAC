@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, leftRangedSpawn.position, leftRangedSpawn.rotation);
         //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
-        Destroy(LightningBolt, 2.0f);
+        Destroy(LightningBolt, 1.0f);
         AudioManager.instance.PlaySFX("attack");
     }
 

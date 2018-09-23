@@ -15,7 +15,7 @@ public class DarkAgeController : MonoBehaviour {
     public GameObject evilmusic;
 
     private float timer;
-    private float timeActual = 5;
+    private float timeActual = 4;
     public float attackDist = 5;
     public float chaseDist = 9;
     public float dist2;
