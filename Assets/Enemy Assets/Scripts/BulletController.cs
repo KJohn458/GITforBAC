@@ -44,7 +44,7 @@ public class BulletController : MonoBehaviour {
 
         while (enabled)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             StartCoroutine(Vanish());
         }
     }
