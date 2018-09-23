@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public Transform rightRangedSpawn;
     public int rangedSpeed;
     private bool rangedWait;
+    public Transform GroundCheckOrigin;
 
     public bool IsGrounded;
     [SerializeField] private float airTime = 0f;
@@ -62,13 +63,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .01f);
         if (hit.collider != null)
         {
             if(hit.collider.tag == "floor")
             {
                 Debug.Log("Hit!");
                 IsGrounded = true;
+                a2d.SetBool("IsGrounded", true);
             }
             
         }
@@ -119,7 +121,6 @@ public class Player : MonoBehaviour
             else
             {
                 Jump();
-   
             }
 
         }
