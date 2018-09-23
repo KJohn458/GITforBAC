@@ -24,6 +24,8 @@ public class DarkAgeController : MonoBehaviour {
     bool righty = true;
     bool dead = false;
 
+    public Transform alpha;
+    public Transform beta;
 
     public enum State
     {
@@ -43,6 +45,7 @@ public class DarkAgeController : MonoBehaviour {
         anim = GetComponent<Animator>();
         health = GetComponent<HealthController>();
         timer = timeActual;
+        StartCoroutine(Movement());
     }
 
     void OnEnable()
@@ -172,6 +175,31 @@ public class DarkAgeController : MonoBehaviour {
           // anim.SetTrigger("Hurt");
             AudioManager.instance.PlaySFX("Heartbeat");
             rb.velocity = Vector2.zero;
+        }
+    }
+
+    IEnumerator Movement()
+    {
+
+        while (enabled)
+        {
+            yield return new WaitForSeconds(1);
+            for (float t = 0; t < 5f; t += Time.deltaTime)
+            {
+                float frac = t / 5f;
+
+                gameObject.transform.position = Vector2.Lerp(alpha.position, beta.position, frac);
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForSeconds(1);
+            
+            for (float t = 0; t < 5f; t += Time.deltaTime)
+            {
+                float frac = t / 5f;
+
+                gameObject.transform.position = Vector2.Lerp(beta.position, alpha.position, frac);
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }

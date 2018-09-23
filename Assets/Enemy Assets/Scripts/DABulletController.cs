@@ -6,7 +6,7 @@ public class DABulletController : MonoBehaviour {
 
     Rigidbody2D rb;
     public Transform player;
-    float speed = 3;
+    float speed = 4;
 
     // Use this for initialization
     void Awake () {
