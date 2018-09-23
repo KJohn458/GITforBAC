@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Transform GroundCheckOrigin;
 
     public bool IsGrounded;
-    private float airTime = 0f;
+    private float speedForce = 0f;
     private float minAirTime = .5f;
     private float maxAirTime = 2f;
 
@@ -114,9 +114,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded == true)
         {
-            if (airTime <= maxAirTime)
+            if (speedForce <= maxAirTime)
             {
-                airTime += .05f;
+                speedForce += .05f;
             }
 
             else
@@ -174,24 +174,19 @@ public class Player : MonoBehaviour
 
     void Jump()
     {
-        if (airTime < minAirTime)
+        if (speedForce < minAirTime)
         {
             rb2d.AddForce(new Vector2(0, minJumpHeight * minAirTime), ForceMode2D.Impulse);
         }
 
-        else if (airTime > maxAirTime)
+        else if (speedForce > maxAirTime)
         {
             rb2d.AddForce(new Vector2(0, maxJumpHeight * maxAirTime), ForceMode2D.Impulse);
         }
 
-        else
-        {
-            rb2d.AddForce(new Vector2(0, ((maxJumpHeight + minJumpHeight) / 2) * airTime), ForceMode2D.Impulse);
-        }
-
         a2d.SetBool("IsGrounded", false);
         IsGrounded = false;
-        airTime = 0f;
+        speedForce = 0f;
     }
 
     void HealthChanged(float previousHealth, float health)
