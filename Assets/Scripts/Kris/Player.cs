@@ -235,6 +235,19 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(scene.name);
         yield break;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "SteamCity")
+        {
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
+        }
+
+        if (collision.tag == "Bossfight")
+        {
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+        }
+    }
     /*
     IEnumerator WaitForShoot()
     {
