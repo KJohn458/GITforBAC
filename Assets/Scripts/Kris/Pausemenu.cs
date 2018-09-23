@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pausemenu : MonoBehaviour {
 
@@ -19,8 +20,11 @@ public class Pausemenu : MonoBehaviour {
     {
         if(paused == true)
         {
-            if (GUILayout.Button("Click me to quit game"))
-                Application.Quit();
+            if (GUILayout.Button("Click me to return to main menu"))
+            {
+                SceneManager.LoadScene(0, LoadSceneMode.Single);
+            }
+                
         }
         
     }
