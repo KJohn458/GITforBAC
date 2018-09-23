@@ -2589,6 +2589,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &507035280
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.80242205
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -20.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.203125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4337486858010196, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef27e5f13855bfc4d8eb7774c7445d66, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &528436013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5039,11 @@ Prefab:
       propertyPath: confetti
       value: 
       objectReference: {fileID: 464172463}
+    - target: {fileID: 114074361447132238, guid: feb549beea2b2394180c0fa6d16c85d4,
+        type: 2}
+      propertyPath: m_Text
+      value: ' '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb549beea2b2394180c0fa6d16c85d4, type: 2}
   m_IsPrefabAsset: 0

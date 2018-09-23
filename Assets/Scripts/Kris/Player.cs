@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         {
             if(hit.collider.tag == "floor")
             {
-                Debug.Log("Hit!");
+               // Debug.Log("Hit!");
                 IsGrounded = true;
                 a2d.SetBool("IsGrounded", true);
             }
