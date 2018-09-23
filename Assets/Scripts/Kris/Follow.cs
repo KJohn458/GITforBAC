@@ -13,7 +13,7 @@ public class Follow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float interpolation = speedOfFOllow * Time.deltaTime;
+        float interpolation = speedOfFOllow * Time.time;
 
         Vector3 position = this.transform.position;
         position.y = Mathf.Lerp(this.transform.position.y + height, objToFollow.transform.position.y + height, interpolation);
