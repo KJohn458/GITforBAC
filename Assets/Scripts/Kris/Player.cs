@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     private Vector2 finalPos;
 
     public GameObject rangedPrefab;
-    public Transform rangedSpawn;
+    public Transform leftRangedSpawn;
+    public Transform rightRangedSpawn;
     public int rangedSpeed;
     private bool rangedWait;
 
@@ -23,7 +24,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Animator a2d;
-    private SpriteRenderer sprite; 
+    private SpriteRenderer sprite;
+
+    private float timer = 0;
 
     private bool IsWalking = false;
 
@@ -58,6 +61,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (((timer % 60) > 1) && rangedWait == true)
+        {
+            timer = 0.0f;
+            a2d.SetBool("IsAttacking", false);
+            rangedWait = false;
+        }
+        
 
         if (Input.GetKey("a"))
         {
@@ -83,32 +94,25 @@ public class Player : MonoBehaviour
         }
 
         
-        if(Input.GetKey(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space) && IsGrounded == true)
         { 
-            airTime += .05f;
+            if(airTime <= maxAirTime)
+            {
+                airTime += .05f;
+            }
+            
+            else
+            {
+                Jump();
+            }
+            
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && IsGrounded == true) 
         {
-            if(airTime < minAirTime)
-            {
-                rb2d.AddForce(new Vector2(0, jumpHeight * minAirTime), ForceMode2D.Impulse);
-            }
-
-            else if(airTime > maxAirTime)
-            {
-                rb2d.AddForce(new Vector2(0, jumpHeight * maxAirTime), ForceMode2D.Impulse);
-            }
-
-            else
-            {
-                rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
-            }
-            
-            a2d.SetBool("IsGrounded", false);
-            IsGrounded = false;
-            airTime = 0f;
+            Jump();
         }
+
 
 
 
@@ -132,7 +136,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "floor") ;
+        if (collision.gameObject.tag == "floor") 
         {
             IsGrounded = true;
             a2d.SetBool("IsGrounded", true);
@@ -141,29 +145,42 @@ public class Player : MonoBehaviour
     
     void FireRight()
     {
-        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn.position, rangedSpawn.rotation);
+        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rightRangedSpawn.position, rightRangedSpawn.rotation);
         //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
-        StartCoroutine(Wait());
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
     }
 
     void FireLeft()
     {
-        var LightningBolt = (GameObject)Instantiate(rangedPrefab, rangedSpawn.position, rangedSpawn.rotation);
+        var LightningBolt = (GameObject)Instantiate(rangedPrefab, leftRangedSpawn.position, leftRangedSpawn.rotation);
         //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
-        StartCoroutine(Wait());
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
     }
 
-    IEnumerator Wait()
+    void Jump()
     {
-        yield return new WaitForSeconds(1);
-        a2d.SetBool("IsAttacking", false);
-        rangedWait = false;
+        if (airTime < minAirTime)
+        {
+            rb2d.AddForce(new Vector2(0, jumpHeight * minAirTime), ForceMode2D.Impulse);
+        }
+
+        else if (airTime > maxAirTime)
+        {
+            rb2d.AddForce(new Vector2(0, jumpHeight * maxAirTime), ForceMode2D.Impulse);
+        }
+
+        else
+        {
+            rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
+        }
+
+        a2d.SetBool("IsGrounded", false);
+        IsGrounded = false;
+        airTime = 0f;
     }
 
     void HealthChanged(float previousHealth, float health)
