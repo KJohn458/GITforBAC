@@ -61,6 +61,19 @@ public class Player : MonoBehaviour
         health.onHealthChanged -= HealthChanged;
     }
 
+/*
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (((timer % 60) > 1) && rangedWait == true)
+        {
+            timer = 0.0f;
+            a2d.SetBool("IsAttacking", false);
+            rangedWait = false;
+        }
+    }
+    */
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -76,13 +89,7 @@ public class Player : MonoBehaviour
             
         }
 
-            timer += Time.deltaTime;
-        if (((timer % 60) > 1) && rangedWait == true)
-        {
-            timer = 0.0f;
-            a2d.SetBool("IsAttacking", false);
-            rangedWait = false;
-        }
+         
 
 
         if (Input.GetKey("a"))
@@ -157,19 +164,19 @@ public class Player : MonoBehaviour
     void FireRight()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, rightRangedSpawn.position, rightRangedSpawn.rotation);
-        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
+        StartCoroutine("WaitForShoot");
     }
 
     void FireLeft()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, leftRangedSpawn.position, leftRangedSpawn.rotation);
-        //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
+        StartCoroutine("WaitForShoot");
     }
 
     void Jump()
@@ -216,6 +223,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+        yield break;
+    }
+
+    IEnumerator WaitForShoot()
+    {
+        yield return new WaitForSeconds(.3f);
+        a2d.SetBool("IsAttacking", false);
+        yield return new WaitForSeconds(.7f);
+        rangedWait = false;
         yield break;
     }
 }
