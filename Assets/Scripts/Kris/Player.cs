@@ -9,8 +9,9 @@ public class Player : MonoBehaviour
 
     public Transform player;
     public int speed;
-    public float jumpHeight;
-    [SerializeField] private Vector2 finalPos;
+    public float maxJumpHeight;
+    public float minJumpHeight;
+    private Vector2 finalPos;
 
     public GameObject rangedPrefab;
     public Transform leftRangedSpawn;
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
     public Transform GroundCheckOrigin;
 
     public bool IsGrounded;
-    [SerializeField] private float airTime = 0f;
+    private float airTime = 0f;
     private float minAirTime = .5f;
     private float maxAirTime = 2f;
 
@@ -167,7 +168,7 @@ public class Player : MonoBehaviour
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, leftRangedSpawn.position, leftRangedSpawn.rotation);
         //LightningBolt.GetComponentInChildren<Rigidbody2D>().AddForce(new Vector2(rangedSpeed, 0), ForceMode2D.Impulse);
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
-        Destroy(LightningBolt, 1.0f);
+        Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
     }
 
@@ -175,17 +176,17 @@ public class Player : MonoBehaviour
     {
         if (airTime < minAirTime)
         {
-            rb2d.AddForce(new Vector2(0, jumpHeight * minAirTime), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector2(0, minJumpHeight * minAirTime), ForceMode2D.Impulse);
         }
 
         else if (airTime > maxAirTime)
         {
-            rb2d.AddForce(new Vector2(0, jumpHeight * maxAirTime), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector2(0, maxJumpHeight * maxAirTime), ForceMode2D.Impulse);
         }
 
         else
         {
-            rb2d.AddForce(new Vector2(0, jumpHeight * airTime), ForceMode2D.Impulse);
+            rb2d.AddForce(new Vector2(0, ((maxJumpHeight + minJumpHeight) / 2) * airTime), ForceMode2D.Impulse);
         }
 
         a2d.SetBool("IsGrounded", false);
