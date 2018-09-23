@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour
     private bool IsWalking = false;
 
     public HealthController health;
+
 
     private void Awake()
     {
@@ -69,11 +71,14 @@ public class Player : MonoBehaviour
         }
         if (((timer % 60) > 1))
         {
-            Debug.Log(timer);
+           // Debug.Log(timer);
             timer = 0.0f;
             a2d.SetBool("IsAttacking", false);
             rangedWait = false;
         }
+
+
+
     }
 
 
