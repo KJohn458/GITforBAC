@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 114790318223992912}
   - component: {fileID: 95853166246412808}
   - component: {fileID: 61275177549206392}
+  - component: {fileID: 114416082052741748}
   m_Layer: 9
   m_Name: Fixed Player
   m_TagString: Untagged
@@ -123,8 +124,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47.79, y: 4.86, z: -0.2304505}
-  m_LocalScale: {x: 0.17018262, y: 0.17963721, z: 0.35017}
+  m_LocalPosition: {x: -3.08, y: -0.85, z: -0.2304505}
+  m_LocalScale: {x: 0.22264992, y: 0.23501936, z: 0.4581274}
   m_Children:
   - {fileID: 4294302849117926}
   - {fileID: 4596515272394324}
@@ -195,6 +196,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114416082052741748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937769584380356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971f55077b66a64489125cdf389f7596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pMenu: {fileID: 0}
 --- !u!114 &114427148836942038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -222,7 +235,7 @@ MonoBehaviour:
   player: {fileID: 4907728496376298}
   speed: 5
   maxJumpHeight: 4
-  minJumpHeight: 10
+  minJumpHeight: 12
   rangedPrefab: {fileID: 1821603598457724, guid: 70ae86f57a944f4479e1a12f196e99b3,
     type: 2}
   leftRangedSpawn: {fileID: 4596515272394324}
@@ -265,7 +278,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: de2507619fcccf24ea18d4ffb18ff949, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

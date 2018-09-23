@@ -15,6 +15,16 @@ public class Pausemenu : MonoBehaviour {
 
     }
 
+    private void OnGUI()
+    {
+        if(paused == true)
+        {
+            if (GUILayout.Button("Click me to quit game"))
+                Application.Quit();
+        }
+        
+    }
+
 
     bool togglePause()
     {
