@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
-       // StartCoroutine("WaitForShoot");
+        // StartCoroutine("WaitForShoot");
     }
 
     void FireLeft()
