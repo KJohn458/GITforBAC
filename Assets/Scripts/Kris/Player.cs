@@ -63,13 +63,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .2f);
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheckOrigin.position, transform.up * -1, .01f);
         if (hit.collider != null)
         {
             if(hit.collider.tag == "floor")
             {
                 Debug.Log("Hit!");
                 IsGrounded = true;
+                a2d.SetBool("IsGrounded", true);
             }
             
         }
