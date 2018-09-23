@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool IsWalking = false;
 
     public HealthController health;
+    private bool DeadManWalking = false;
 
 
     private void Awake()
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour
          
 
 
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") && DeadManWalking == false)
         {
             a2d.SetBool("IsWalking", true);
             finalPos.y = transform.position.y;
@@ -110,7 +111,7 @@ public class Player : MonoBehaviour
             sprite.flipX = true;
         }
 
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") && DeadManWalking == false)
         {
             if (sprite.flipX == true)
             {
@@ -216,7 +217,7 @@ public class Player : MonoBehaviour
         if (previousHealth > 0 && health == 0)
         {
             a2d.SetTrigger("Death");
-
+            DeadManWalking = true;
             StartCoroutine(Restart());
             rb2d.velocity = Vector3.zero;
         }

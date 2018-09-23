@@ -7365,11 +7365,6 @@ Prefab:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
-    - target: {fileID: 224754917097722378, guid: 8926884df516c2e46a9f0ff7c971fe26,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8926884df516c2e46a9f0ff7c971fe26, type: 2}
   m_IsPrefabAsset: 0
