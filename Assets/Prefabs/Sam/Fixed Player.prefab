@@ -123,7 +123,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9, y: -3.23, z: 0}
+  m_LocalPosition: {x: -6.3526545, y: 0.49792498, z: 0}
   m_LocalScale: {x: 0.17018262, y: 0.17963721, z: 0.35017}
   m_Children:
   - {fileID: 4294302849117926}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 6
-  health: 0
+  health: 6
 --- !u!114 &114790318223992912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,8 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4907728496376298}
   speed: 5
-  maxJumpHeight: 0
-  minJumpHeight: 0
+  maxJumpHeight: 4
+  minJumpHeight: 10
   rangedPrefab: {fileID: 1821603598457724, guid: 70ae86f57a944f4479e1a12f196e99b3,
     type: 2}
   leftRangedSpawn: {fileID: 4596515272394324}
