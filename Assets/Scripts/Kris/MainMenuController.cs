@@ -33,4 +33,8 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(4, LoadSceneMode.Single);
     }   
 
+    public void MainMenuObject()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
 }
