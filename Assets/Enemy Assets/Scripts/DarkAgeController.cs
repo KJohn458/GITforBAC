@@ -12,6 +12,7 @@ public class DarkAgeController : MonoBehaviour {
     public Transform gun;
     public Animator anim;
    public HealthController health;
+    public GameObject evilmusic;
 
     private float timer;
     private float timeActual = 5;
@@ -156,7 +157,9 @@ public class DarkAgeController : MonoBehaviour {
     void spooked() { AudioManager.instance.PlaySFX("Spook"); }
     void FinalDeath() {
         GameObject poof = Spawner.instance.Spawn("Poof");
-        poof.transform.position = gameObject.transform.position; gameObject.SetActive(false); }
+        poof.transform.position = gameObject.transform.position; gameObject.SetActive(false);
+        AppManager.instance.Wnn();
+    }
 
 
     void HealthChanged(float previousHealth, float health)
@@ -168,6 +171,7 @@ public class DarkAgeController : MonoBehaviour {
             dead = true;
             state = State.Dead;
             rb.velocity = Vector2.zero;
+            evilmusic.SetActive(false);
             
         }
         else if (previousHealth > health)
@@ -202,4 +206,6 @@ public class DarkAgeController : MonoBehaviour {
             }
         }
     }
+
+    
 }
