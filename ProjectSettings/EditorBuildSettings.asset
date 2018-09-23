@@ -12,12 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Sam/Level Set Sam.unity
     guid: 908c8514b2cb00748839ff540761a988
   - enabled: 1
-    path: Assets/Scenes/Kris/MainGame.unity
-    guid: d3f67ab33333ddd4cba2b1d318139a0f
+    path: Assets/Scenes/Kris/TestMain.unity
+    guid: 8373a9669d13dbb4bb2c496b22f97a5d
   - enabled: 1
     path: Assets/Scenes/DarkArena.unity
     guid: 6efa9f83d452e1d42992532e26cc6b72
   - enabled: 1
+    path: Assets/Scenes/Kris/Credits.unity
+    guid: 42df23524b1562d4da7fc4aaca3cd070
+  - enabled: 0
+    path: Assets/Scenes/Kris/MainGame.unity
+    guid: d3f67ab33333ddd4cba2b1d318139a0f
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 0
