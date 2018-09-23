@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour {
 
     private bool created = false;
     public int health = 1;
-    private bool isTheGameOverYet = false;
 
     
 
@@ -27,9 +26,5 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(isTheGameOverYet == true)
-        {
-            SceneManager.LoadScene("EndScreen", LoadSceneMode.Single);
-        }
 	}
 }

@@ -20,7 +20,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGameObject()
     {
-        SceneManager.LoadScene("MainGame", LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     public void CloseGameObject()
@@ -30,7 +30,7 @@ public class MainMenuController : MonoBehaviour
 
     public void CreditsGameObject()
     {
-        SceneManager.LoadScene("Credits", LoadSceneMode.Single);
+        SceneManager.LoadScene(4, LoadSceneMode.Single);
     }   
 
 }

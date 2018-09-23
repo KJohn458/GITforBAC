@@ -8,6 +8,8 @@ TagManager:
   - Fairy
   - PlayerDamage
   - floor
+  - SteamCity
+  - Bossfight
   layers:
   - Default
   - TransparentFX

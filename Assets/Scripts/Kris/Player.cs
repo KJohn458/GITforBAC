@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         {
             if(hit.collider.tag == "floor")
             {
-                Debug.Log("Hit!");
+               // Debug.Log("Hit!");
                 IsGrounded = true;
                 a2d.SetBool("IsGrounded", true);
             }
@@ -234,6 +234,19 @@ public class Player : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         yield break;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "SteamCity")
+        {
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
+        }
+
+        if (collision.tag == "Bossfight")
+        {
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+        }
     }
     /*
     IEnumerator WaitForShoot()
