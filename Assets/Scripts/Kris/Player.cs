@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     private bool rangedWait;
 
     public bool IsGrounded;
-    [SerializeField] private float airTime = 0f; 
+    [SerializeField] private float airTime = 0f;
     private float minAirTime = .5f;
     private float maxAirTime = 2f;
 
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
             a2d.SetBool("IsAttacking", false);
             rangedWait = false;
         }
-        
+
 
         if (Input.GetKey("a"))
         {
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey("d"))
         {
-            if(sprite.flipX == true)
+            if (sprite.flipX == true)
             {
                 sprite.flipX = false;
             }
@@ -88,27 +89,27 @@ public class Player : MonoBehaviour
             finalPos.x = transform.position.x + speed;
             transform.position = Vector2.Lerp(transform.position, finalPos, Time.deltaTime);
         }
-        if(Input.GetKey("a") == false && Input.GetKey("d") == false)
+        if (Input.GetKey("a") == false && Input.GetKey("d") == false)
         {
             a2d.SetBool("IsWalking", false);
         }
 
-        
-        if(Input.GetKey(KeyCode.Space) && IsGrounded == true)
-        { 
-            if(airTime <= maxAirTime)
+
+        if (Input.GetKey(KeyCode.Space) && IsGrounded == true)
+        {
+            if (airTime <= maxAirTime)
             {
                 airTime += .05f;
             }
-            
+
             else
             {
                 Jump();
             }
-            
+
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && IsGrounded == true) 
+        if (Input.GetKeyUp(KeyCode.Space) && IsGrounded == true)
         {
             Jump();
         }
@@ -119,11 +120,11 @@ public class Player : MonoBehaviour
 
 
 
-        if(Input.GetKeyDown(KeyCode.Mouse0) && rangedWait == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && rangedWait == false)
         {
             a2d.SetBool("IsAttacking", true);
             rangedWait = true;
-            if(sprite.flipX == true)
+            if (sprite.flipX == true)
             {
                 FireLeft();
             }
@@ -136,13 +137,13 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "floor") 
+        if (collision.gameObject.tag == "floor")
         {
             IsGrounded = true;
             a2d.SetBool("IsGrounded", true);
         }
     }
-    
+
     void FireRight()
     {
         var LightningBolt = (GameObject)Instantiate(rangedPrefab, rightRangedSpawn.position, rightRangedSpawn.rotation);
@@ -188,8 +189,8 @@ public class Player : MonoBehaviour
         if (previousHealth > 0 && health == 0)
         {
             a2d.SetTrigger("Death");
-            
-           
+
+            StartCoroutine(Restart());
             rb2d.velocity = Vector3.zero;
         }
         else if (previousHealth > health)
@@ -198,6 +199,14 @@ public class Player : MonoBehaviour
             AudioManager.instance.PlaySFX("PlayerHit");
             rb2d.velocity = Vector3.zero;
         }
+    }
+
+    IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(5);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        yield break;
     }
 }
 

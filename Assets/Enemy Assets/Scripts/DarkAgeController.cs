@@ -183,7 +183,7 @@ public class DarkAgeController : MonoBehaviour {
 
         while (enabled)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.5f);
             for (float t = 0; t < 5f; t += Time.deltaTime)
             {
                 float frac = t / 5f;
@@ -191,7 +191,7 @@ public class DarkAgeController : MonoBehaviour {
                 gameObject.transform.position = Vector2.Lerp(alpha.position, beta.position, frac);
                 yield return new WaitForEndOfFrame();
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.5f);
             
             for (float t = 0; t < 5f; t += Time.deltaTime)
             {

@@ -539,6 +539,11 @@ Prefab:
       propertyPath: beta
       value: 
       objectReference: {fileID: 1522451330}
+    - target: {fileID: 114870136207357612, guid: 945cbef247719f5489bb2ac9378c58e5,
+        type: 2}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 945cbef247719f5489bb2ac9378c58e5, type: 2}
   m_IsPrefabAsset: 0
