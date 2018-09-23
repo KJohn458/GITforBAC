@@ -14,7 +14,7 @@ public class Follow : MonoBehaviour {
         float interpolation = speedOfFOllow * Time.deltaTime;
 
         Vector3 position = this.transform.position;
-        position.y = Mathf.Lerp(this.transform.position.y, objToFollow.transform.position.y, interpolation);
+        position.y = Mathf.Lerp(this.transform.position.y+5, objToFollow.transform.position.y+5, interpolation);
         position.x = Mathf.Lerp(this.transform.position.x, objToFollow.transform.position.x, interpolation);
 
         this.transform.position = position; 
