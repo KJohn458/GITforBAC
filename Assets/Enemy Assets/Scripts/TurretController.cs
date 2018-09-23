@@ -12,7 +12,7 @@ public class TurretController : MonoBehaviour {
     public Animator anim;
 
     private float timer;
-    private float timeActual = 1;
+    private float timeActual = 2;
     public float attackDist = 5;
     public float chaseDist = 7;
     public float dist2;
