@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294302849117926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4596515272394324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 4498590901322800}
   - component: {fileID: 20270481987806876}
   - component: {fileID: 81329313194098224}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114790318223992912}
   - component: {fileID: 95853166246412808}
   - component: {fileID: 70886840403910654}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Fixed Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1485213408592756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.433192, y: 4.5090885, z: -28.557558}
+  m_LocalPosition: {x: 0, y: 4, z: -28.557558}
   m_LocalScale: {x: 5.876041, y: 5.566776, z: 2.8557558}
   m_Children: []
   m_Father: {fileID: 4907728496376298}
@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937769584380356}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.265, y: -0.81, z: 0}
+  m_LocalPosition: {x: -2.2585244, y: -2.9326186, z: 0}
   m_LocalScale: {x: 0.17018262, y: 0.17963721, z: 0.35017}
   m_Children:
   - {fileID: 4294302849117926}
