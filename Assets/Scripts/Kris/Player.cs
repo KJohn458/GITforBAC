@@ -116,7 +116,7 @@ public class Player : MonoBehaviour
         {
             if (speedForce <= maxAirTime)
             {
-                speedForce += .05f;
+                speedForce += .1f;
             }
 
             else
@@ -182,6 +182,11 @@ public class Player : MonoBehaviour
         else if (speedForce > maxAirTime)
         {
             rb2d.AddForce(new Vector2(0, maxJumpHeight * maxAirTime), ForceMode2D.Impulse);
+        }
+
+        else
+        {
+            rb2d.AddForce(new Vector2(0, minJumpHeight * minAirTime), ForceMode2D.Impulse);
         }
 
         a2d.SetBool("IsGrounded", false);
