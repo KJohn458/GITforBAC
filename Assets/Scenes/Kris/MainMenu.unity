@@ -766,7 +766,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1981514536}
-        m_MethodName: StartGameObject
+        m_MethodName: CreditsGameObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
