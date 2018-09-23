@@ -36,7 +36,7 @@ public class TurretController : MonoBehaviour {
     void Start ()
     {        
             rb = GetComponent<Rigidbody2D>();
-       // player = ColorChangeController.instance.transform;
+        player = Player.instance.transform;
             anim = GetComponent<Animator>();
                 
             timer = timeActual;        

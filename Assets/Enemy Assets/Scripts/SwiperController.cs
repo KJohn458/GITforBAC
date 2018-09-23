@@ -25,6 +25,7 @@ public class SwiperController : MonoBehaviour {
         sr = GetComponentInChildren<SpriteRenderer>();        
        // health = GetComponent<HealthController>();
         anim = GetComponent<Animator>();
+        player = Player.instance.transform;
     }
 
    
@@ -41,9 +42,10 @@ public class SwiperController : MonoBehaviour {
         
         if (dist < chaseDist && !resting)
         {
-           
+            StartCoroutine(Attack());
             anim.SetTrigger("Attack");
-            
+            AudioManager.instance.PlaySFX("Slice");
+            resting = true;
         }
 
     }
@@ -79,6 +81,15 @@ public class SwiperController : MonoBehaviour {
         fryingPan = false;
     }
 
-   
+   IEnumerator Attack()
+    {
+        while (enabled) {
+            yield return new WaitForSeconds(3);
+            resting = false;
+            yield break;
+        }
+
+        
+    }
 
 }

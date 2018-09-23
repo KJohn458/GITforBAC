@@ -40,7 +40,7 @@ public class HunterController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-      //  player = ColorChangeController.instance.transform;
+        player = Player.instance.transform;
         anim = GetComponent<Animator>();
        // health = GetComponent<HealthController>();
         timer = timeActual;
@@ -97,8 +97,9 @@ public class HunterController : MonoBehaviour
 
         if (dist < chaseDist && !charging)
         {
+            AudioManager.instance.PlaySFX("woosh");
             state = State.Charging;
-          //  charging = true;
+            charging = true;
         }
     }
 
