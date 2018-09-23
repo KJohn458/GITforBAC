@@ -14163,7 +14163,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1639072289726152, guid: feb549beea2b2394180c0fa6d16c85d4, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb549beea2b2394180c0fa6d16c85d4, type: 2}
@@ -21549,7 +21549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToFollow: {fileID: 33295176}
   speedOfFOllow: 0.2
-  height: 3
+  height: 5
 --- !u!1 &1520378409
 GameObject:
   m_ObjectHideFlags: 0
@@ -24853,6 +24853,11 @@ Prefab:
       propertyPath: pMenu
       value: 
       objectReference: {fileID: 195496572}
+    - target: {fileID: 114790318223992912, guid: 5e8d542417d2ee0439d7ae6fb733ddae,
+        type: 2}
+      propertyPath: maxJumpHeight
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e8d542417d2ee0439d7ae6fb733ddae, type: 2}
   m_IsPrefabAsset: 0
