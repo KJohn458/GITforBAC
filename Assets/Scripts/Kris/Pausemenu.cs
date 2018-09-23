@@ -5,21 +5,14 @@ using UnityEngine;
 public class Pausemenu : MonoBehaviour {
 
     bool paused = false;
+    public GameObject pMenu;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             paused = togglePause();
-    }
+            
 
-    void OnGUI()
-    {
-        if (paused)
-        {
-            GUILayout.Label("Game is paused!");
-            if (GUILayout.Button("Click me to unpause"))
-                paused = togglePause();
-        }
     }
 
 
@@ -28,11 +21,13 @@ public class Pausemenu : MonoBehaviour {
         if (Time.timeScale == 0f)
         {
             Time.timeScale = 1f;
+            pMenu.SetActive(false);
             return (false);
         }
         else
         {
             Time.timeScale = 0f;
+            pMenu.SetActive(true);
             return (true);
         }
     }
