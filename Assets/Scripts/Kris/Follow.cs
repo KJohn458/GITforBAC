@@ -10,15 +10,21 @@ public class Follow : MonoBehaviour {
 
     public float height;
 
+    Vector3 vel;
 	
 	// Update is called once per frame
-	void Update () {
-        float interpolation = speedOfFOllow * Time.time;
+	void FixedUpdate () {
+        float interpolation = speedOfFOllow * Time.deltaTime;
 
-        Vector3 position = this.transform.position;
-        position.y = Mathf.Lerp(this.transform.position.y + height, objToFollow.transform.position.y + height, interpolation);
-        position.x = Mathf.Lerp(this.transform.position.x, objToFollow.transform.position.x, interpolation);
+        Vector3 position = objToFollow.transform.position;
+        position.z = transform.position.z;
+        position.y += height;
 
-        this.transform.position = position; 
-	}
+
+        //position.y = Mathf.Lerp(this.transform.position.y + height, objToFollow.transform.position.y + height, interpolation);
+       // position.x = Mathf.Lerp(this.transform.position.x, objToFollow.transform.position.x, interpolation);
+
+        //this.transform.position = position;
+        this.transform.position = Vector3.SmoothDamp(transform.position, position, ref vel, speedOfFOllow);
+    }
 }
