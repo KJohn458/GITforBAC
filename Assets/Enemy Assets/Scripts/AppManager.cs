@@ -25,10 +25,10 @@ public class AppManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Application.Quit();
-        }
+      // if (Input.GetButtonDown("Cancel"))
+      // {
+      //     Application.Quit();
+      // }
     }
 
     IEnumerator HappyEnd()
