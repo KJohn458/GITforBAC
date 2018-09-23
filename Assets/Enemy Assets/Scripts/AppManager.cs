@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AppManager : MonoBehaviour {
 
@@ -22,6 +23,13 @@ public class AppManager : MonoBehaviour {
         StartCoroutine(HappyEnd());
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Application.Quit();
+        }
+    }
 
     IEnumerator HappyEnd()
     {
