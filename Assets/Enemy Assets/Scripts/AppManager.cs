@@ -14,7 +14,7 @@ public class AppManager : MonoBehaviour {
     private void Awake()
     {
         if (instance == null) { instance = this; }
-        DontDestroyOnLoad(this.gameObject);
+       // DontDestroyOnLoad(this.gameObject);
     }
 
     public void Wnn()

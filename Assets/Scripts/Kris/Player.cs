@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -28,12 +29,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator a2d;
     private SpriteRenderer sprite;
-
     private float timer = 0;
 
     private bool IsWalking = false;
 
     public HealthController health;
+
 
     private void Awake()
     {
@@ -61,6 +62,26 @@ public class Player : MonoBehaviour
         health.onHealthChanged -= HealthChanged;
     }
 
+    private void Update()
+    {
+        if(timer <= 60 && rangedWait == true)
+        {
+           // Debug.Log(timer);
+            timer += Time.deltaTime;
+        }
+        if (((timer % 60) > 1))
+        {
+           // Debug.Log(timer);
+            timer = 0.0f;
+            a2d.SetBool("IsAttacking", false);
+            rangedWait = false;
+        }
+
+
+
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -76,13 +97,7 @@ public class Player : MonoBehaviour
             
         }
 
-            timer += Time.deltaTime;
-        if (((timer % 60) > 1) && rangedWait == true)
-        {
-            timer = 0.0f;
-            a2d.SetBool("IsAttacking", false);
-            rangedWait = false;
-        }
+         
 
 
         if (Input.GetKey("a"))
@@ -161,6 +176,7 @@ public class Player : MonoBehaviour
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
+        // StartCoroutine("WaitForShoot");
     }
 
     void FireLeft()
@@ -170,6 +186,7 @@ public class Player : MonoBehaviour
         LightningBolt.GetComponentInChildren<Rigidbody2D>().velocity = new Vector2(-6, 0);
         Destroy(LightningBolt, 2.0f);
         AudioManager.instance.PlaySFX("attack");
+        //StartCoroutine("WaitForShoot");
     }
 
     void Jump()
@@ -218,5 +235,15 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(scene.name);
         yield break;
     }
+    /*
+    IEnumerator WaitForShoot()
+    {
+        yield return new WaitForSeconds(.3f);
+        a2d.SetBool("IsAttacking", false);
+        yield return new WaitForSeconds(.7f);
+        rangedWait = false;
+        yield break;
+    }
+    */
 }
 
