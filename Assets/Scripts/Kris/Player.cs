@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     public HealthController health;
     private bool DeadManWalking = false;
 
+    public ContinueScript continues;
+
+    public Lives lifeCounter;
+
 
     private void Awake()
     {
@@ -50,6 +54,9 @@ public class Player : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         a2d = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        continues = GameObject.Find("AppManager").GetComponent<ContinueScript>();
+        lifeCounter = GameObject.Find("LiveHolder").GetComponent<Lives>();
+        continues.continues = lifeCounter.lives;
     }
 
     void OnEnable()
@@ -76,6 +83,11 @@ public class Player : MonoBehaviour
             timer = 0.0f;
             a2d.SetBool("IsAttacking", false);
             rangedWait = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            HealthChanged(1, 0);
         }
 
 
@@ -212,16 +224,16 @@ public class Player : MonoBehaviour
         speedForce = 0f;
     }
 
-    void HealthChanged(float previousHealth, float health)
+    void HealthChanged(float previousHealth, float healthValue)
     {
-        if (previousHealth > 0 && health == 0)
+        if (previousHealth > 0 && healthValue == 0)
         {
             a2d.SetTrigger("Death");
             DeadManWalking = true;
             StartCoroutine(Restart());
             rb2d.velocity = Vector3.zero;
         }
-        else if (previousHealth > health)
+        else if (previousHealth > healthValue)
         {
             a2d.SetTrigger("Hurt");
             AudioManager.instance.PlaySFX("PlayerHit");
@@ -232,8 +244,19 @@ public class Player : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(5);
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        continues.LoseALife();
+        lifeCounter.lives--;
+        if(continues.continues < 0)
+        {
+            continues.continues = 3;
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+        else
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
         yield break;
     }
 

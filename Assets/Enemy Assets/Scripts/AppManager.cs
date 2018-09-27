@@ -23,13 +23,7 @@ public class AppManager : MonoBehaviour {
         StartCoroutine(HappyEnd());
     }
 
-    private void Update()
-    {
-      // if (Input.GetButtonDown("Cancel"))
-      // {
-      //     Application.Quit();
-      // }
-    }
+
 
     IEnumerator HappyEnd()
     {

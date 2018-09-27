@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthController : MonoBehaviour {
 
@@ -13,8 +14,9 @@ public class HealthController : MonoBehaviour {
 
     void Awake()
     {
-        health = maxHealth; 
+        health = maxHealth;
     }
+
     
     public void TakeDamage(float damage)
     {
@@ -23,4 +25,8 @@ public class HealthController : MonoBehaviour {
         health = Mathf.Clamp(health, 0, maxHealth);
         onHealthChanged(oldhealth,health);
     }
+
+
+
+
 }
