@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         continues = GameObject.Find("AppManager").GetComponent<ContinueScript>();
         lifeCounter = GameObject.Find("LiveHolder").GetComponent<Lives>();
-        continues.continues = lifeCounter.lives;
     }
 
     void OnEnable()
@@ -85,10 +84,10 @@ public class Player : MonoBehaviour
             rangedWait = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            HealthChanged(1, 0);
-        }
+      //  if (Input.GetKeyDown(KeyCode.F))
+        //{
+         //   HealthChanged(1, 0);
+        //}
 
 
 
@@ -244,9 +243,8 @@ public class Player : MonoBehaviour
     IEnumerator Restart()
     {
         yield return new WaitForSeconds(5);
-        continues.LoseALife();
         lifeCounter.lives--;
-        if(continues.continues < 0)
+        if(lifeCounter.lives < 0)
         {
             continues.continues = 3;
             SceneManager.LoadScene(0, LoadSceneMode.Single);
